@@ -12,12 +12,14 @@ const Gameboard = () => {
     j: [],
   };
   const placeShip = (y, x, ship) => {
-    if (x + ship.length > 10) {
-      throw new Error('Out of range');
-    }
+    if (!ship.isVertical) {
+      if (x + ship.length > 10) {
+        throw new Error('Out of range');
+      }
 
-    for (let i = 0; i < ship.length; i++) {
-      cordinates[y][x + i - 1] = [[`${ship.name}`], [x + i]];
+      for (let i = 0; i < ship.length; i++) {
+        cordinates[y][x + i - 1] = [[`${ship.name}`], [x + i]];
+      }
     }
   };
 

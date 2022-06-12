@@ -5,6 +5,7 @@ test('gameboard places ship correctly in horizontal position', () => {
   const ship1 = {
     name: 'submarine',
     length: 3,
+    isVertical: false,
   };
   gameboard1.placeShip('b', 1, ship1);
   expect(gameboard1.cordinates.b).toEqual([
@@ -26,6 +27,7 @@ test("gameboard doesn't allow to place items out of range", () => {
   const ship2 = {
     name: 'submarine',
     length: 3,
+    isVertical: false,
   };
   expect(() => gameboard2.placeShip('c', 9, ship2)).toThrow('Out of range');
 });
