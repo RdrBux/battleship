@@ -1,6 +1,6 @@
 import { Gameboard } from './gameboard';
 
-test('gameboard places ship correctly', () => {
+test('gameboard places ship correctly in horizontal position', () => {
   const gameboard1 = Gameboard();
   const ship1 = {
     name: 'submarine',
@@ -11,13 +11,13 @@ test('gameboard places ship correctly', () => {
     [['submarine'], [1]],
     [['submarine'], [2]],
     [['submarine'], [3]],
-    '0',
-    '0',
-    '0',
-    '0',
-    '0',
-    '0',
-    '0',
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
   ]);
 });
 

@@ -36,3 +36,20 @@ test("Saves ship's name", () => {
   const submarine = ShipFactory(3, 'submarine');
   expect(submarine.name).toBe('submarine');
 });
+
+test('Ships arrangement is vertical by default', () => {
+  const submarine = ShipFactory(3, 'submarine');
+  expect(submarine.isVertical).toBe(true);
+});
+
+test('Ships arrangement can be initialized as horizontal', () => {
+  const submarine = ShipFactory(3, 'submarine', false);
+  expect(submarine.isVertical).toBe(false);
+});
+
+test('Ship arrangement can be changed after being initialized', () => {
+  const submarine = ShipFactory(3, 'submarine', true);
+  expect(submarine.isVertical).toBe(true);
+  submarine.isVertical = false;
+  expect(submarine.isVertical).toBe(false);
+});

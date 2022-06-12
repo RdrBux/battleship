@@ -1,15 +1,15 @@
 const Gameboard = () => {
   const cordinates = {
-    a: [...Array(10)].map((_, i) => '0'),
-    b: [...Array(10)].map((_, i) => '0'),
-    c: [...Array(10)].map((_, i) => '0'),
-    d: [...Array(10)].map((_, i) => '0'),
-    e: [...Array(10)].map((_, i) => '0'),
-    f: [...Array(10)].map((_, i) => '0'),
-    g: [...Array(10)].map((_, i) => '0'),
-    h: [...Array(10)].map((_, i) => '0'),
-    i: [...Array(10)].map((_, i) => '0'),
-    j: [...Array(10)].map((_, i) => '0'),
+    a: [],
+    b: [],
+    c: [],
+    d: [],
+    e: [],
+    f: [],
+    g: [],
+    h: [],
+    i: [],
+    j: [],
   };
   const placeShip = (y, x, ship) => {
     if (x + ship.length > 10) {
