@@ -8,7 +8,7 @@ test('gameboard places ship correctly in horizontal position', () => {
     isVertical: false,
   };
   gameboard1.placeShip('b', 1, ship1);
-  expect(gameboard1.cordinates.b).toEqual([
+  expect(gameboard1.coordinates.b).toEqual([
     [['submarine'], [1]],
     [['submarine'], [2]],
     [['submarine'], [3]],
@@ -40,7 +40,7 @@ test('gameboard places ship correctly in vertical position', () => {
     isVertical: true,
   };
   gameboard3.placeShip('c', 3, ship3);
-  expect(gameboard3.cordinates.c).toEqual([
+  expect(gameboard3.coordinates.c).toEqual([
     undefined,
     undefined,
     [['submarine'], [1]],
@@ -52,7 +52,7 @@ test('gameboard places ship correctly in vertical position', () => {
     undefined,
     undefined,
   ]);
-  expect(gameboard3.cordinates.d).toEqual([
+  expect(gameboard3.coordinates.d).toEqual([
     undefined,
     undefined,
     [['submarine'], [2]],
@@ -64,7 +64,7 @@ test('gameboard places ship correctly in vertical position', () => {
     undefined,
     undefined,
   ]);
-  expect(gameboard3.cordinates.e).toEqual([
+  expect(gameboard3.coordinates.e).toEqual([
     undefined,
     undefined,
     [['submarine'], [3]],
@@ -107,7 +107,7 @@ test("gameboard doesn't allow to place multiple ships in the same place", () => 
 test('gameboard registers correctly an attack in an empty square', () => {
   const gameboard4 = Gameboard();
   gameboard4.receiveAttack('b', 7);
-  expect(gameboard4.cordinates.b[6]).toEqual('missed');
+  expect(gameboard4.coordinates.b[6]).toEqual('missed');
 });
 
 test("gameboard doesn't allow to hit the same target multiple times", () => {

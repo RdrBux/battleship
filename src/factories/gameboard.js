@@ -1,6 +1,6 @@
 const Gameboard = () => {
   const ships = [];
-  const cordinates = {
+  const coordinates = {
     a: [],
     b: [],
     c: [],
@@ -12,11 +12,16 @@ const Gameboard = () => {
     i: [],
     j: [],
   };
+
+  /*   const addToCoordinates = (y, x, text) => {
+    coordinates[y][x] = text;
+  };
+ */
   const placeShip = (y, x, ship) => {
     const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
     const yValue = columns.indexOf(y);
 
-    if (cordinates[y][x - 1] !== undefined) {
+    if (coordinates[y][x - 1] !== undefined) {
       throw new Error('cannot share the same square between multiple ships');
     }
 
@@ -25,7 +30,7 @@ const Gameboard = () => {
         throw new Error('Out of range');
       }
       for (let i = 0; i < ship.length; i++) {
-        cordinates[columns[yValue + i]][x - 1] = [[`${ship.name}`], [i + 1]];
+        coordinates[columns[yValue + i]][x - 1] = [[`${ship.name}`], [i + 1]];
       }
     }
     if (!ship.isVertical) {
@@ -34,30 +39,35 @@ const Gameboard = () => {
       }
 
       for (let i = 0; i < ship.length; i++) {
-        cordinates[y][x + i - 1] = [[`${ship.name}`], [i + 1]];
+        coordinates[y][x + i - 1] = [[`${ship.name}`], [i + 1]];
       }
     }
     ships.push(ship);
   };
 
   const receiveAttack = (y, x) => {
-    if (cordinates[y][x - 1] === undefined) {
-      cordinates[y][x - 1] = 'missed';
-    } else if (cordinates[y][x - 1] === 'missed') {
-      throw new Error("Can't hit same target multiple times");
+    if (coordinates[y][x - 1] === undefined) {
+      coordinates[y][x - 1] = 'missed';
+    } else if (
+      coordinates[y][x - 1] === 'missed' ||
+      coordinates[y][x - 1] === 'hit'
+    ) {
+      throw new Error("Can't hit same square multiple times");
     } else {
-      const shipName = cordinates[y][x - 1][0][0];
-      const shipPlaceHit = cordinates[y][x - 1][1];
+      const shipName = coordinates[y][x - 1][0][0];
+      const shipPlaceHit = coordinates[y][x - 1][1];
       ships.forEach((ship) => {
         if (ship.name === shipName) {
-          ship.status[shipPlaceHit - 1] = 'hit';
-          cordinates[y][x - 1] = 'hit';
+          ship.status[shipPlaceHit - 1] = 'hit'; // CHANGE FOR HIT() AND ISSUNK()
+          coordinates[y][x - 1] = 'hit';
         }
       });
     }
   };
 
-  return { ships, cordinates, placeShip, receiveAttack };
+  const checkAllSunk = {};
+
+  return { ships, coordinates, placeShip, receiveAttack };
 };
 
 export { Gameboard };
