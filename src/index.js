@@ -1,3 +1,7 @@
 import './style.css';
+import { displayBoard } from './dom';
 
-console.log('hi');
+const container = document.querySelector('.container');
+
+container.appendChild(displayBoard());
+container.appendChild(displayBoard());
